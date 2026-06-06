@@ -148,7 +148,7 @@ export default function HeroSection({ handleNav, t, lang }) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           style={{ transform: "translateZ(40px)" }}
-          className="text-[10px] sm:text-[11px] uppercase tracking-[0.45em] text-[#B48C48] font-medium mb-3"
+          className="text-[10px] sm:text-[11px] uppercase tracking-[0.45em] text-[#B48C48] font-medium mb-4"
         >
           {lang === 'fr' ? 'Expéditions de Prestige' : 'Prestige Expeditions'}
         </motion.span>
@@ -163,7 +163,7 @@ export default function HeroSection({ handleNav, t, lang }) {
             lineHeight: 1.25,
             transform: "translateZ(60px)", // More depth for the main header
           }}
-          className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] mb-8 drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
+          className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] mb-10 drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
         >
           {lang === 'fr' ? (
             <>
