@@ -75,20 +75,16 @@ export default function HeroSection({ handleNav, t, lang }) {
   return (
     <div 
       id="hero-section-container" 
-      className="relative w-full h-[calc(100dvh-60px)] sm:h-[calc(100vh-70px)] flex items-center justify-center overflow-hidden bg-[#0C0B0A]"
+      className="relative w-full h-[calc(100dvh-56px)] sm:h-[calc(100vh-70px)] flex items-center justify-center overflow-hidden bg-[#0C0B0A]"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ perspective: 1000 }} // Establishes 3D space
+      style={{ perspective: 1000 }}
     >
-      {/* HTML5 Native Video element configured to suppress all native mobile overlay signs */}
+      {/* Video — starts invisible, fades in only once playing to hide any browser play icon */}
       <video
         ref={videoRef}
-        className="absolute object-cover pointer-events-none select-none"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
         style={{
-          top: '0',
-          left: '0',
-          width: '100%',
-          height: '100%',
           opacity: videoLoaded ? 0.6 : 0,
           transition: 'opacity 1.5s ease-in-out',
           zIndex: 0,
@@ -123,7 +119,7 @@ export default function HeroSection({ handleNav, t, lang }) {
         }}
       />
 
-      {/* Text Group — positioned in the upper-center of the hero */}
+      {/* Text Group — vertically centered in the hero */}
       <motion.div 
         style={{ 
           rotateX, 
@@ -131,7 +127,7 @@ export default function HeroSection({ handleNav, t, lang }) {
           transformStyle: "preserve-3d",
           z: 50,
         }}
-        className="absolute z-20 inset-x-0 top-[18%] sm:top-[22%] flex flex-col items-center text-center px-6 select-none"
+        className="absolute z-20 inset-x-0 top-[28%] sm:top-[25%] flex flex-col items-center text-center px-5 sm:px-6 select-none"
       >
         {/* Fine gold line */}
         <motion.div 
@@ -139,7 +135,7 @@ export default function HeroSection({ handleNav, t, lang }) {
           animate={{ scaleX: 1, opacity: 0.75 }}
           transition={{ duration: 1, ease: "easeOut" }}
           style={{ transform: "translateZ(30px)" }}
-          className="w-12 h-[1px] bg-[#B48C48] mb-6 sm:mb-8" 
+          className="w-12 h-[1px] bg-[#B48C48] mb-5 sm:mb-8" 
         />
 
         {/* Sub-heading */}
@@ -148,7 +144,7 @@ export default function HeroSection({ handleNav, t, lang }) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           style={{ transform: "translateZ(40px)" }}
-          className="text-[10px] sm:text-[11px] uppercase tracking-[0.45em] text-[#B48C48] font-medium mb-4 sm:mb-6"
+          className="text-[9px] sm:text-[11px] uppercase tracking-[0.35em] sm:tracking-[0.45em] text-[#B48C48] font-medium mb-3 sm:mb-6"
         >
           {lang === 'fr' ? 'Expéditions de Prestige' : 'Prestige Expeditions'}
         </motion.span>
@@ -160,10 +156,10 @@ export default function HeroSection({ handleNav, t, lang }) {
           transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
           style={{
             fontFamily: 'var(--font-serif)',
-            lineHeight: 1.2,
+            lineHeight: 1.15,
             transform: "translateZ(60px)",
           }}
-          className="text-[1.75rem] sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] max-w-4xl drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
+          className="text-[1.5rem] sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide text-[#F3EFE9] max-w-[320px] sm:max-w-2xl md:max-w-4xl drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
         >
           {lang === 'fr' ? (
             <>
@@ -177,42 +173,45 @@ export default function HeroSection({ handleNav, t, lang }) {
         </motion.h1>
       </motion.div>
 
-      {/* Buttons — anchored near the bottom */}
-      <motion.div 
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-        style={{ transform: "translateZ(50px)" }}
-        className="absolute z-20 bottom-[14%] sm:bottom-[16%] inset-x-0 flex flex-row items-center justify-center gap-3 sm:gap-6 px-6"
-      >
-        <button
-          className="px-6 sm:px-8 py-3 sm:py-4 border border-[#B48C48]/30 bg-transparent text-[#F3EFE9] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
-          style={{ fontFamily: 'var(--font-sans)' }}
-          onClick={() => handleNav('packages')}
+      {/* Buttons + Gold Scroll Bar — grouped together at the very bottom */}
+      <div className="absolute z-20 bottom-6 sm:bottom-8 inset-x-0 flex flex-col items-center gap-5 sm:gap-6">
+        {/* Buttons */}
+        <motion.div 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+          style={{ transform: "translateZ(50px)" }}
+          className="flex flex-row items-center justify-center gap-3 sm:gap-6 px-6"
         >
-          {lang === 'fr' ? 'Découvrir' : 'Explore'}
-        </button>
+          <button
+            className="px-5 sm:px-8 py-2.5 sm:py-3.5 border border-[#B48C48]/30 bg-transparent text-[#F3EFE9] text-[9px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
+            style={{ fontFamily: 'var(--font-sans)' }}
+            onClick={() => handleNav('packages')}
+          >
+            {lang === 'fr' ? 'Découvrir' : 'Explore'}
+          </button>
 
-        <button
-          className="px-6 sm:px-8 py-3 sm:py-4 border border-[#B48C48]/30 bg-transparent text-[#C5BEB5] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
-          style={{ fontFamily: 'var(--font-sans)' }}
-          onClick={() => handleNav('contact')}
+          <button
+            className="px-5 sm:px-8 py-2.5 sm:py-3.5 border border-[#B48C48]/30 bg-transparent text-[#C5BEB5] text-[9px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
+            style={{ fontFamily: 'var(--font-sans)' }}
+            onClick={() => handleNav('contact')}
+          >
+            {lang === 'fr' ? 'Contact' : 'Contact Us'}
+          </button>
+        </motion.div>
+
+        {/* Gold Scroll Indicator — right below the buttons */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          transition={{ duration: 1, delay: 1.0 }}
+          className="flex flex-col items-center pointer-events-none"
         >
-          {lang === 'fr' ? 'Contact' : 'Contact Us'}
-        </button>
-      </motion.div>
-
-      {/* Decorative Minimalist Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ duration: 1, delay: 1.0 }}
-        className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 pointer-events-none"
-      >
-        <div className="w-[1px] h-[35px] sm:h-[50px] bg-gradient-to-b from-[#B48C48] to-transparent relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[15px] bg-[#F3EFE9] animate-[scrollLine_2.5s_infinite]" />
-        </div>
-      </motion.div>
+          <div className="w-[1px] h-[30px] sm:h-[45px] bg-gradient-to-b from-[#B48C48] to-transparent relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[15px] bg-[#F3EFE9] animate-[scrollLine_2.5s_infinite]" />
+          </div>
+        </motion.div>
+      </div>
       
       {/* Scroll indicator keyframe styles */}
       <style>{`
