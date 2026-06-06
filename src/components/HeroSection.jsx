@@ -28,19 +28,32 @@ export default function HeroSection({ handleNav, t, lang }) {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleVideoCanPlay = () => {
+    // Force play on mount to guarantee autoplay
+    const attemptPlay = () => {
       setVideoLoaded(true);
-      video.play().catch(err => console.error('Autoplay error:', err));
+      video.play().catch(err => {
+        console.warn('Autoplay prevented, retrying on interaction...', err);
+        // Fallback: play on user interaction if blocked
+        const playOnInteraction = () => {
+          video.play().catch(e => console.error(e));
+          document.removeEventListener('click', playOnInteraction);
+          document.removeEventListener('touchstart', playOnInteraction);
+        };
+        document.addEventListener('click', playOnInteraction);
+        document.addEventListener('touchstart', playOnInteraction);
+      });
     };
 
-    video.addEventListener('canplay', handleVideoCanPlay);
+    video.addEventListener('canplay', attemptPlay);
+    video.addEventListener('loadedmetadata', attemptPlay);
 
-    if (video.readyState >= 3) {
-      handleVideoCanPlay();
+    if (video.readyState >= 2) {
+      attemptPlay();
     }
 
     return () => {
-      video.removeEventListener('canplay', handleVideoCanPlay);
+      video.removeEventListener('canplay', attemptPlay);
+      video.removeEventListener('loadedmetadata', attemptPlay);
     };
   }, []);
 
@@ -62,36 +75,32 @@ export default function HeroSection({ handleNav, t, lang }) {
   return (
     <div 
       id="hero-section-container" 
-      className="relative w-full h-[100dvh] min-h-[480px] sm:min-h-[640px] flex items-center justify-center overflow-hidden bg-[#0C0B0A]"
+      className="relative w-full h-[calc(100dvh-60px)] sm:h-[calc(100vh-70px)] flex items-center justify-center overflow-hidden bg-[#0C0B0A]"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ perspective: 1000 }} // Establishes 3D space
     >
-      {/* Video Background with subtle parallax movement */}
-      <motion.video
+      {/* HTML5 Native Video element for maximum compatibility and autoplay support */}
+      <video
         ref={videoRef}
+        className="absolute object-cover pointer-events-none"
         style={{
-          position: 'absolute',
           top: '-5%',
           left: '-5%',
           width: '110%',
           height: '110%',
-          objectFit: 'cover',
           opacity: videoLoaded ? 0.6 : 0,
-          transition: 'opacity 2.5s ease-in-out',
+          transition: 'opacity 1.5s ease-in-out',
           zIndex: 0,
           filter: 'brightness(0.85) contrast(1.05)',
-          x: translateOverlayX,
-          y: translateOverlayY,
         }}
-        loop={true}
+        loop
         playsInline
-        preload="auto"
         muted
         autoPlay
       >
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4" type="video/mp4" />
-      </motion.video>
+      </video>
 
       {/* Cinematic Vignette & Warm Tint Overlay */}
       <div 
@@ -117,7 +126,7 @@ export default function HeroSection({ handleNav, t, lang }) {
           transformStyle: "preserve-3d",
           z: 50 // Push forward slightly in 3D space
         }}
-        className="relative z-20 text-center px-6 max-w-3xl flex flex-col items-center select-none"
+        className="relative z-20 text-center px-4 sm:px-6 max-w-3xl flex flex-col items-center select-none"
       >
         {/* Fine gold line top border detail with 3D depth */}
         <motion.div 
@@ -146,10 +155,10 @@ export default function HeroSection({ handleNav, t, lang }) {
           transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
           style={{
             fontFamily: 'var(--font-serif)',
-            lineHeight: 1.2,
+            lineHeight: 1.25,
             transform: "translateZ(60px)", // More depth for the main header
           }}
-          className="text-4xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] mb-12 drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
+          className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] mb-12 drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
         >
           {lang === 'fr' ? (
             <>
@@ -162,32 +171,30 @@ export default function HeroSection({ handleNav, t, lang }) {
           )}
         </motion.h1>
 
-        {/* Muted Premium Subtitle (Removed per request) */}
-
-        {/* Luxury Architectural Gold Border Buttons */}
+        {/* Luxury Architectural Gold Border Buttons - Flex-Row for Mobile */}
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
           style={{ transform: "translateZ(50px)" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto"
+          className="flex flex-row items-center justify-center gap-3 sm:gap-6 w-full max-w-[340px] sm:max-w-none"
         >
-          {/* Main Action Link with expanding gold underline */}
+          {/* Main Action Button */}
           <button
-            className="group w-full sm:w-auto px-8 py-4 border border-[#B48C48]/30 bg-transparent text-[#F3EFE9] text-[11px] font-semibold uppercase tracking-[0.25em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer"
+            className="flex-1 sm:flex-initial sm:px-8 py-3.5 sm:py-4 border border-[#B48C48]/30 bg-transparent text-[#F3EFE9] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
             style={{ fontFamily: 'var(--font-sans)' }}
             onClick={() => handleNav('packages')}
           >
             {lang === 'fr' ? 'Découvrir' : 'Explore'}
           </button>
 
-          {/* Secondary Action Link */}
+          {/* Secondary Action Button */}
           <button
-            className="group w-full sm:w-auto px-8 py-4 border border-[#B48C48]/30 bg-transparent text-[#C5BEB5] text-[11px] font-semibold uppercase tracking-[0.25em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer"
+            className="flex-1 sm:flex-initial sm:px-8 py-3.5 sm:py-4 border border-[#B48C48]/30 bg-transparent text-[#C5BEB5] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
             style={{ fontFamily: 'var(--font-sans)' }}
             onClick={() => handleNav('contact')}
           >
-            {lang === 'fr' ? 'Nous Contacter' : 'Contact Us'}
+            {lang === 'fr' ? 'Contact' : 'Contact Us'}
           </button>
         </motion.div>
       </motion.div>
@@ -197,9 +204,9 @@ export default function HeroSection({ handleNav, t, lang }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.4 }}
         transition={{ duration: 1, delay: 1.0 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 pointer-events-none"
+        className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 pointer-events-none"
       >
-        <div className="w-[1px] h-[50px] bg-gradient-to-b from-[#B48C48] to-transparent relative overflow-hidden">
+        <div className="w-[1px] h-[35px] sm:h-[50px] bg-gradient-to-b from-[#B48C48] to-transparent relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-[15px] bg-[#F3EFE9] animate-[scrollLine_2.5s_infinite]" />
         </div>
       </motion.div>
