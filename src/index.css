@@ -1657,6 +1657,21 @@ img {
   .contact-layout {
     grid-template-columns: 1fr;
   }
+
+  .page-hero {
+    height: auto;
+    min-height: 35vh;
+    padding: 6rem 1rem 4rem 1rem;
+  }
+  
+  .page-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .package-hero-stats {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1687,6 +1702,31 @@ img {
     max-width: 280px;
     margin: 1.5rem auto 0 auto;
     gap: 0.75rem;
+  }
+
+  .page-hero h1 {
+    font-size: 1.7rem;
+    line-height: 1.25;
+  }
+  
+  .package-hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+  
+  .hero-stat-card {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .hero-stat-val {
+    font-size: 0.95rem;
+  }
+  
+  .hero-stat-label {
+    font-size: 0.65rem;
   }
   
   .features-grid, .testimonials-grid, .checklist-grid, .about-story-section, .about-team-grid, .features-grid.grid-4-cols, .features-grid.grid-5-cols {
