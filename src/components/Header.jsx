@@ -102,14 +102,6 @@ export default function Header({ lang, setLang, currentPage, setCurrentPage }) {
           >
             {t.nav.contact}
           </a>
-          <a
-            href="#showcase"
-            id="nav-cinematic"
-            className={`nav-link ${currentPage === 'cinematic' ? 'active' : ''}`}
-            onClick={(e) => { e.preventDefault(); handleNav('cinematic'); }}
-          >
-            {t.nav.cinematic}
-          </a>
         </nav>
 
         {/* Language Toggler & CTA Button */}
