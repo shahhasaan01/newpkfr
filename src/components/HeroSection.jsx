@@ -131,7 +131,7 @@ export default function HeroSection({ handleNav, t, lang }) {
           transformStyle: "preserve-3d",
           z: 50 // Push forward slightly in 3D space
         }}
-        className="relative z-20 w-full h-full pt-[20vh] pb-[15vh] px-4 sm:px-6 flex flex-col justify-between items-center select-none"
+        className="relative z-20 w-full h-full pt-16 sm:pt-24 pb-32 sm:pb-40 px-4 sm:px-6 flex flex-col justify-between items-center select-none"
       >
         {/* Top Text Group */}
         <div className="flex flex-col items-center text-center" style={{ transformStyle: "preserve-3d" }}>
