@@ -131,50 +131,53 @@ export default function HeroSection({ handleNav, t, lang }) {
           transformStyle: "preserve-3d",
           z: 50 // Push forward slightly in 3D space
         }}
-        className="relative z-20 text-center px-4 sm:px-6 max-w-3xl flex flex-col items-center select-none"
+        className="relative z-20 w-full h-full pt-[20vh] pb-[15vh] px-4 sm:px-6 flex flex-col justify-between items-center select-none"
       >
-        {/* Fine gold line top border detail with balanced spacing */}
-        <motion.div 
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 0.75 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          style={{ transform: "translateZ(30px)" }}
-          className="w-12 h-[1px] bg-[#B48C48] mb-8" 
-        />
+        {/* Top Text Group */}
+        <div className="flex flex-col items-center text-center" style={{ transformStyle: "preserve-3d" }}>
+          {/* Fine gold line top border detail with balanced spacing */}
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 0.75 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            style={{ transform: "translateZ(30px)" }}
+            className="w-12 h-[1px] bg-[#B48C48] mb-8" 
+          />
 
-        {/* Elegant Minimal Sub-heading with close vertical spacing */}
-        <motion.span 
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          style={{ transform: "translateZ(40px)" }}
-          className="text-[10px] sm:text-[11px] uppercase tracking-[0.45em] text-[#B48C48] font-medium mb-6"
-        >
-          {lang === 'fr' ? 'Expéditions de Prestige' : 'Prestige Expeditions'}
-        </motion.span>
+          {/* Elegant Minimal Sub-heading with close vertical spacing */}
+          <motion.span 
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            style={{ transform: "translateZ(40px)" }}
+            className="text-[10px] sm:text-[11px] uppercase tracking-[0.45em] text-[#B48C48] font-medium mb-6"
+          >
+            {lang === 'fr' ? 'Expéditions de Prestige' : 'Prestige Expeditions'}
+          </motion.span>
 
-        {/* High-End Editorial Title with tight bottom margin */}
-        <motion.h1
-          initial={{ y: 30, rotateX: 15, opacity: 0 }}
-          animate={{ y: 0, rotateX: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
-          style={{
-            fontFamily: 'var(--font-serif)',
-            lineHeight: 1.25,
-            transform: "translateZ(60px)", // More depth for the main header
-          }}
-          className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] mb-12 drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
-        >
-          {lang === 'fr' ? (
-            <>
-              L'Art du Voyage au Cœur du <span className="italic font-normal text-[#DFD5C6]">Karakoram</span>
-            </>
-          ) : (
-            <>
-              The Art of Ascent in the <span className="italic font-normal text-[#DFD5C6]">Karakoram</span>
-            </>
-          )}
-        </motion.h1>
+          {/* High-End Editorial Title with tight bottom margin */}
+          <motion.h1
+            initial={{ y: 30, rotateX: 15, opacity: 0 }}
+            animate={{ y: 0, rotateX: 0, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
+            style={{
+              fontFamily: 'var(--font-serif)',
+              lineHeight: 1.25,
+              transform: "translateZ(60px)", // More depth for the main header
+            }}
+            className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] max-w-4xl drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
+          >
+            {lang === 'fr' ? (
+              <>
+                L'Art du Voyage au Cœur du <span className="italic font-normal text-[#DFD5C6]">Karakoram</span>
+              </>
+            ) : (
+              <>
+                The Art of Ascent in the <span className="italic font-normal text-[#DFD5C6]">Karakoram</span>
+              </>
+            )}
+          </motion.h1>
+        </div>
 
         {/* Muted Premium Subtitle (Removed per request) */}
 
