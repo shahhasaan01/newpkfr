@@ -62,7 +62,7 @@ export default function HeroSection({ handleNav, t, lang }) {
   return (
     <div 
       id="hero-section-container" 
-      className="relative w-full h-screen min-h-[640px] flex items-center justify-center overflow-hidden bg-[#0C0B0A]"
+      className="relative w-full h-[100dvh] min-h-[480px] sm:min-h-[640px] flex items-center justify-center overflow-hidden bg-[#0C0B0A]"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ perspective: 1000 }} // Establishes 3D space
@@ -103,7 +103,7 @@ export default function HeroSection({ handleNav, t, lang }) {
 
       {/* Film grain noise overlay */}
       <div 
-        className="absolute inset-0 z-15 opacity-[0.03] mix-blend-overlay pointer-events-none"
+        className="absolute inset-0 z-15 opacity-[0.04] mix-blend-overlay pointer-events-none"
         style={{ 
           backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" 
         }}
@@ -117,7 +117,7 @@ export default function HeroSection({ handleNav, t, lang }) {
           transformStyle: "preserve-3d",
           z: 50 // Push forward slightly in 3D space
         }}
-        className="relative z-20 text-center px-8 max-w-3xl flex flex-col items-center select-none"
+        className="relative z-20 text-center px-6 max-w-3xl flex flex-col items-center select-none"
       >
         {/* Fine gold line top border detail with 3D depth */}
         <motion.div 
@@ -149,7 +149,7 @@ export default function HeroSection({ handleNav, t, lang }) {
             lineHeight: 1.2,
             transform: "translateZ(60px)", // More depth for the main header
           }}
-          className="text-4xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] mb-8 drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
+          className="text-4xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] mb-12 drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
         >
           {lang === 'fr' ? (
             <>
@@ -162,49 +162,32 @@ export default function HeroSection({ handleNav, t, lang }) {
           )}
         </motion.h1>
 
-        {/* Muted Premium Subtitle */}
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          style={{
-            fontFamily: 'var(--font-sans)',
-            transform: "translateZ(40px)",
-          }}
-          className="text-xs sm:text-sm text-[#C5BEB5] font-light max-w-lg leading-relaxed mb-12 tracking-wider drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
-        >
-          {t.home.hero.subheading}
-        </motion.p>
+        {/* Muted Premium Subtitle (Removed per request) */}
 
-        {/* Ultra-Minimal Luxury Buttons */}
+        {/* Luxury Architectural Gold Border Buttons */}
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
           style={{ transform: "translateZ(50px)" }}
-          className="flex flex-row items-center justify-center gap-8"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto"
         >
           {/* Main Action Link with expanding gold underline */}
           <button
-            className="group relative py-2 text-[#F3EFE9] text-xs font-semibold uppercase tracking-[0.25em] transition-all duration-300 cursor-pointer"
+            className="group w-full sm:w-auto px-8 py-4 border border-[#B48C48]/30 bg-transparent text-[#F3EFE9] text-[11px] font-semibold uppercase tracking-[0.25em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer"
             style={{ fontFamily: 'var(--font-sans)' }}
             onClick={() => handleNav('packages')}
           >
             {lang === 'fr' ? 'Découvrir' : 'Explore'}
-            <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#B48C48] scale-x-50 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
           </button>
-
-          {/* Divider Dot */}
-          <span className="text-[#B48C48] text-[8px] opacity-40 select-none">✦</span>
 
           {/* Secondary Action Link */}
           <button
-            className="group relative py-2 text-[#C5BEB5] text-xs font-semibold uppercase tracking-[0.25em] transition-all duration-300 hover:text-white cursor-pointer"
+            className="group w-full sm:w-auto px-8 py-4 border border-[#B48C48]/30 bg-transparent text-[#C5BEB5] text-[11px] font-semibold uppercase tracking-[0.25em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer"
             style={{ fontFamily: 'var(--font-sans)' }}
             onClick={() => handleNav('contact')}
           >
             {lang === 'fr' ? 'Nous Contacter' : 'Contact Us'}
-            <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
           </button>
         </motion.div>
       </motion.div>
@@ -213,7 +196,7 @@ export default function HeroSection({ handleNav, t, lang }) {
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.4 }}
-        transition={{ duration: 1, delay: 1.2 }}
+        transition={{ duration: 1, delay: 1.0 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 pointer-events-none"
       >
         <div className="w-[1px] h-[50px] bg-gradient-to-b from-[#B48C48] to-transparent relative overflow-hidden">
