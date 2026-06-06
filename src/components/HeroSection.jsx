@@ -80,10 +80,10 @@ export default function HeroSection({ handleNav, t, lang }) {
       onMouseLeave={handleMouseLeave}
       style={{ perspective: 1000 }} // Establishes 3D space
     >
-      {/* HTML5 Native Video element for maximum compatibility and autoplay support */}
+      {/* HTML5 Native Video element configured to suppress all native mobile overlay signs */}
       <video
         ref={videoRef}
-        className="absolute object-cover pointer-events-none"
+        className="absolute object-cover pointer-events-none select-none"
         style={{
           top: '-5%',
           left: '-5%',
@@ -96,8 +96,13 @@ export default function HeroSection({ handleNav, t, lang }) {
         }}
         loop
         playsInline
+        webkit-playsinline="true"
+        x5-playsinline="true"
         muted
         autoPlay
+        controls={false}
+        disablePictureInPicture
+        controlsList="nodownload nofullscreen noremoteplayback"
       >
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4" type="video/mp4" />
       </video>
@@ -128,27 +133,27 @@ export default function HeroSection({ handleNav, t, lang }) {
         }}
         className="relative z-20 text-center px-4 sm:px-6 max-w-3xl flex flex-col items-center select-none"
       >
-        {/* Fine gold line top border detail with 3D depth */}
+        {/* Fine gold line top border detail with balanced spacing */}
         <motion.div 
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 0.75 }}
           transition={{ duration: 1, ease: "easeOut" }}
           style={{ transform: "translateZ(30px)" }}
-          className="w-12 h-[1px] bg-[#B48C48] mb-8" 
+          className="w-12 h-[1px] bg-[#B48C48] mb-6" 
         />
 
-        {/* Elegant Minimal Sub-heading */}
+        {/* Elegant Minimal Sub-heading with close vertical spacing */}
         <motion.span 
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           style={{ transform: "translateZ(40px)" }}
-          className="text-[10px] sm:text-[11px] uppercase tracking-[0.45em] text-[#B48C48] font-medium mb-6"
+          className="text-[10px] sm:text-[11px] uppercase tracking-[0.45em] text-[#B48C48] font-medium mb-3"
         >
           {lang === 'fr' ? 'Expéditions de Prestige' : 'Prestige Expeditions'}
         </motion.span>
 
-        {/* High-End Editorial Title with 3D rotate transition */}
+        {/* High-End Editorial Title with tight bottom margin */}
         <motion.h1
           initial={{ y: 30, rotateX: 15, opacity: 0 }}
           animate={{ y: 0, rotateX: 0, opacity: 1 }}
@@ -158,7 +163,7 @@ export default function HeroSection({ handleNav, t, lang }) {
             lineHeight: 1.25,
             transform: "translateZ(60px)", // More depth for the main header
           }}
-          className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] mb-12 drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
+          className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] mb-8 drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
         >
           {lang === 'fr' ? (
             <>
@@ -170,6 +175,8 @@ export default function HeroSection({ handleNav, t, lang }) {
             </>
           )}
         </motion.h1>
+
+        {/* Muted Premium Subtitle (Removed per request) */}
 
         {/* Luxury Architectural Gold Border Buttons - Flex-Row for Mobile */}
         <motion.div 
