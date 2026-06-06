@@ -13,6 +13,7 @@ export const translations = {
       visa: "Visa & Réservation",
       about: "À Propos",
       contact: "Contact",
+      cinematic: "Vitrine",
       bookNow: "Réserver Votre Voyage",
     },
     // Footer
@@ -572,6 +573,7 @@ export const translations = {
       visa: "Visa & Booking",
       about: "About Us",
       contact: "Contact",
+      cinematic: "Showcase",
       bookNow: "Book Your Journey",
     },
     // Footer

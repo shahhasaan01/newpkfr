@@ -8,6 +8,7 @@ import K2Experience from './pages/K2Experience';
 import VisaBooking from './pages/VisaBooking';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import CinematicCard from './components/CinematicCard';
 
 export default function App() {
   // Global States
@@ -40,10 +41,16 @@ export default function App() {
         return <About lang={lang} />;
       case 'contact':
         return <Contact lang={lang} bookingParams={bookingParams} />;
+      case 'cinematic':
+        return <CinematicCard setCurrentPage={setCurrentPage} />;
       default:
         return <Home lang={lang} setCurrentPage={setCurrentPage} />;
     }
   };
+
+  if (currentPage === 'cinematic') {
+    return <CinematicCard setCurrentPage={setCurrentPage} />;
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }} id="app-root-shell">
