@@ -41,8 +41,8 @@ export const translations = {
     // Home Page
     home: {
       hero: {
-        headline: "EXPLOREZ LE PAKISTAN EN STYLE PREMIUM",
-        subheading: "Expéditions de luxe sur mesure de 15 jours au départ de Paris vers Skardu. Hôtels 5 étoiles, pension complète, randonnées guidées et expériences inoubliables au pied du K2.",
+        headline: "L'Art du Voyage au Cœur du Karakoram",
+        subheading: "Une immersion exclusive de 15 jours entre sommets mythiques, refuges de prestige et nature indomptée. Conçu sur mesure pour l'explorateur exigeant.",
       },
       features: {
         title: "L'Excellence du Voyage Aventure",
@@ -600,8 +600,8 @@ export const translations = {
     // Home Page
     home: {
       hero: {
-        headline: "EXPLORE PAKISTAN IN PREMIUM STYLE",
-        subheading: "Customized 15-day luxury expeditions from Paris to Skardu, including 5-star hotels, all meals, guided trekking, and K2 base camp experiences.",
+        headline: "The Art of Ascent in the Karakoram",
+        subheading: "An exclusive 15-day journey curated for the discerning explorer. Five-star comfort at the gateway of giants.",
       },
       features: {
         title: "Outstanding Adventure Travel",
