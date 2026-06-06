@@ -123,90 +123,83 @@ export default function HeroSection({ handleNav, t, lang }) {
         }}
       />
 
-      {/* 3D Tilting Content Layout */}
+      {/* Text Group — positioned in the upper-center of the hero */}
       <motion.div 
         style={{ 
           rotateX, 
           rotateY, 
           transformStyle: "preserve-3d",
-          z: 50 // Push forward slightly in 3D space
+          z: 50,
         }}
-        className="relative z-20 w-full h-full pt-16 sm:pt-24 pb-32 sm:pb-40 px-4 sm:px-6 flex flex-col justify-between items-center select-none"
+        className="absolute z-20 inset-x-0 top-[18%] sm:top-[22%] flex flex-col items-center text-center px-6 select-none"
       >
-        {/* Top Text Group */}
-        <div className="flex flex-col items-center text-center" style={{ transformStyle: "preserve-3d" }}>
-          {/* Fine gold line top border detail with balanced spacing */}
-          <motion.div 
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 0.75 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            style={{ transform: "translateZ(30px)" }}
-            className="w-12 h-[1px] bg-[#B48C48] mb-8" 
-          />
-
-          {/* Elegant Minimal Sub-heading with close vertical spacing */}
-          <motion.span 
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            style={{ transform: "translateZ(40px)" }}
-            className="text-[10px] sm:text-[11px] uppercase tracking-[0.45em] text-[#B48C48] font-medium mb-6"
-          >
-            {lang === 'fr' ? 'Expéditions de Prestige' : 'Prestige Expeditions'}
-          </motion.span>
-
-          {/* High-End Editorial Title with tight bottom margin */}
-          <motion.h1
-            initial={{ y: 30, rotateX: 15, opacity: 0 }}
-            animate={{ y: 0, rotateX: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
-            style={{
-              fontFamily: 'var(--font-serif)',
-              lineHeight: 1.25,
-              transform: "translateZ(60px)", // More depth for the main header
-            }}
-            className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] max-w-4xl drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
-          >
-            {lang === 'fr' ? (
-              <>
-                L'Art du Voyage au Cœur du <span className="italic font-normal text-[#DFD5C6]">Karakoram</span>
-              </>
-            ) : (
-              <>
-                The Art of Ascent in the <span className="italic font-normal text-[#DFD5C6]">Karakoram</span>
-              </>
-            )}
-          </motion.h1>
-        </div>
-
-        {/* Muted Premium Subtitle (Removed per request) */}
-
-        {/* Luxury Architectural Gold Border Buttons - Flex-Row for Mobile */}
+        {/* Fine gold line */}
         <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-          style={{ transform: "translateZ(50px)" }}
-          className="flex flex-row items-center justify-center gap-3 sm:gap-6 w-full max-w-[340px] sm:max-w-none"
-        >
-          {/* Main Action Button */}
-          <button
-            className="flex-1 sm:flex-initial sm:px-8 py-3.5 sm:py-4 border border-[#B48C48]/30 bg-transparent text-[#F3EFE9] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
-            style={{ fontFamily: 'var(--font-sans)' }}
-            onClick={() => handleNav('packages')}
-          >
-            {lang === 'fr' ? 'Découvrir' : 'Explore'}
-          </button>
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 0.75 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          style={{ transform: "translateZ(30px)" }}
+          className="w-12 h-[1px] bg-[#B48C48] mb-6 sm:mb-8" 
+        />
 
-          {/* Secondary Action Button */}
-          <button
-            className="flex-1 sm:flex-initial sm:px-8 py-3.5 sm:py-4 border border-[#B48C48]/30 bg-transparent text-[#C5BEB5] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
-            style={{ fontFamily: 'var(--font-sans)' }}
-            onClick={() => handleNav('contact')}
-          >
-            {lang === 'fr' ? 'Contact' : 'Contact Us'}
-          </button>
-        </motion.div>
+        {/* Sub-heading */}
+        <motion.span 
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          style={{ transform: "translateZ(40px)" }}
+          className="text-[10px] sm:text-[11px] uppercase tracking-[0.45em] text-[#B48C48] font-medium mb-4 sm:mb-6"
+        >
+          {lang === 'fr' ? 'Expéditions de Prestige' : 'Prestige Expeditions'}
+        </motion.span>
+
+        {/* Main Title */}
+        <motion.h1
+          initial={{ y: 30, rotateX: 15, opacity: 0 }}
+          animate={{ y: 0, rotateX: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
+          style={{
+            fontFamily: 'var(--font-serif)',
+            lineHeight: 1.2,
+            transform: "translateZ(60px)",
+          }}
+          className="text-[1.75rem] sm:text-5xl md:text-6xl font-light tracking-wide text-[#F3EFE9] max-w-4xl drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]"
+        >
+          {lang === 'fr' ? (
+            <>
+              L'Art du Voyage au Cœur du <span className="italic font-normal text-[#DFD5C6]">Karakoram</span>
+            </>
+          ) : (
+            <>
+              The Art of Ascent in the <span className="italic font-normal text-[#DFD5C6]">Karakoram</span>
+            </>
+          )}
+        </motion.h1>
+      </motion.div>
+
+      {/* Buttons — anchored near the bottom */}
+      <motion.div 
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+        style={{ transform: "translateZ(50px)" }}
+        className="absolute z-20 bottom-[14%] sm:bottom-[16%] inset-x-0 flex flex-row items-center justify-center gap-3 sm:gap-6 px-6"
+      >
+        <button
+          className="px-6 sm:px-8 py-3 sm:py-4 border border-[#B48C48]/30 bg-transparent text-[#F3EFE9] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
+          style={{ fontFamily: 'var(--font-sans)' }}
+          onClick={() => handleNav('packages')}
+        >
+          {lang === 'fr' ? 'Découvrir' : 'Explore'}
+        </button>
+
+        <button
+          className="px-6 sm:px-8 py-3 sm:py-4 border border-[#B48C48]/30 bg-transparent text-[#C5BEB5] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:border-[#B48C48] hover:bg-[#B48C48]/5 hover:text-white cursor-pointer whitespace-nowrap"
+          style={{ fontFamily: 'var(--font-sans)' }}
+          onClick={() => handleNav('contact')}
+        >
+          {lang === 'fr' ? 'Contact' : 'Contact Us'}
+        </button>
       </motion.div>
 
       {/* Decorative Minimalist Scroll Indicator */}
